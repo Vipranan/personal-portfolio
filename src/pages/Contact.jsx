@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { FaGithub, FaPhone, FaMapMarkerAlt, FaPaperPlane, FaLinkedinIn, FaEnvelope } from 'react-icons/fa';
 import { HiOutlineMail } from 'react-icons/hi';
+import Button3D from '../components/Button3D';
 import Footer from '../components/Footer';
 
 const contactMethods = [
@@ -14,7 +15,7 @@ const contactMethods = [
     {
         icon: <FaLinkedinIn />,
         label: 'LinkedIn',
-        value: 'linkedin.com/in/vipranans',
+        value: 'Vipranan S',
         href: 'https://www.linkedin.com/in/vipranans/',
     },
     {
@@ -26,7 +27,7 @@ const contactMethods = [
     {
         icon: <FaGithub />,
         label: 'GitHub',
-        value: 'github.com/Vipranan',
+        value: 'Vipranan',
         href: 'https://github.com/Vipranan',
     },
     {
@@ -219,27 +220,25 @@ export default function Contact() {
                             />
                         </motion.div>
 
-                        <motion.button
-                            type="submit"
-                            className="form-submit"
-                            variants={itemVariants}
-                            whileHover={{ scale: 1.03 }}
-                            whileTap={{ scale: 0.97 }}
-                            disabled={status === 'sending'}
-                            style={{ opacity: status === 'sending' ? 0.7 : 1 }}
-                        >
-                            {status === 'sending' ? (
-                                '⏳ Sending...'
-                            ) : status === 'success' ? (
-                                '✅ Message Sent!'
-                            ) : status === 'error' ? (
-                                '❌ Failed — Try Again'
-                            ) : (
-                                <>
-                                    Send Message <FaPaperPlane />
-                                </>
-                            )}
-                        </motion.button>
+                        <motion.div variants={itemVariants}>
+                            <Button3D
+                                type="submit"
+                                disabled={status === 'sending'}
+                                style={{ opacity: status === 'sending' ? 0.7 : 1 }}
+                            >
+                                {status === 'sending' ? (
+                                    '⏳ Sending...'
+                                ) : status === 'success' ? (
+                                    '✅ Message Sent!'
+                                ) : status === 'error' ? (
+                                    '❌ Failed — Try Again'
+                                ) : (
+                                    <>
+                                        Send Message <FaPaperPlane />
+                                    </>
+                                )}
+                            </Button3D>
+                        </motion.div>
                     </motion.form>
                 </div>
             </section>

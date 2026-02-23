@@ -4,13 +4,12 @@ import { motion, useScroll, useTransform, useSpring, useInView } from 'framer-mo
 import { FaGithub, FaBrain, FaRocket, FaCode, FaUsers } from 'react-icons/fa';
 import { HiArrowRight, HiChevronDown, HiOutlineChip, HiOutlineDocumentText, HiOutlineCode, HiOutlineEye } from 'react-icons/hi';
 import ParticleField from '../components/ParticleField';
+import Robot3D from '../components/Robot3D';
 import Footer from '../components/Footer';
 
 const roles = [
     'GenAI Engineer',
     'AI Researcher',
-    'Backend Developer',
-    'NLP Specialist',
 ];
 
 const featuredProjects = [
@@ -22,10 +21,10 @@ const featuredProjects = [
         link: '/projects',
     },
     {
-        title: 'INTELLI-GRADE',
-        description: 'ML system for extracting handwritten marks from marksheets with two-step confirmation for accuracy.',
-        tech: ['Python', 'ML', 'Computer Vision', 'OCR'],
-        icon: <HiOutlineDocumentText />,
+        title: 'AIRMAN — Aviation AI Chat',
+        description: 'RAG system for aviation documents with hybrid FAISS + BM25 retrieval, cross-encoder reranking, and citation tracking.',
+        tech: ['Python', 'LangChain', 'FAISS', 'Ollama'],
+        icon: <HiOutlineEye />,
         link: '/projects',
     },
     {
@@ -35,10 +34,17 @@ const featuredProjects = [
         icon: <HiOutlineEye />,
         link: '/projects',
     },
+    {
+        title: 'SQL Buddy',
+        description: 'Natural language to SQL system supporting 55+ languages. Ask in any language, get instant SQL results.',
+        tech: ['Python', 'FastAPI', 'Ollama', 'LLM'],
+        icon: <HiOutlineCode />,
+        link: '/projects',
+    },
 ];
 
 const stats = [
-    { icon: <FaBrain />, number: 4, suffix: '+', label: 'AI Projects', color: '#6c5ce7' },
+    { icon: <FaBrain />, number: 6, suffix: '+', label: 'AI Projects', color: '#6c5ce7' },
     { icon: <FaRocket />, number: 3, suffix: '+', label: 'Work Experiences', color: '#00cec9' },
     { icon: <FaCode />, number: 10, suffix: '+', label: 'Technologies', color: '#a855f7' },
     { icon: <FaUsers />, number: 3, suffix: '', label: 'Languages Spoken', color: '#fd79a8' },
@@ -164,7 +170,7 @@ export default function Home() {
                     animate="visible"
                 >
                     <motion.p className="hero-greeting" variants={itemVariants}>
-                        <span className="wave">👋</span> Hey there, I'm
+                        — Hey there, I'm
                     </motion.p>
 
                     <motion.h1 className="hero-name" variants={itemVariants}>
@@ -256,6 +262,28 @@ export default function Home() {
                     <div className="scroll-line" />
                     <HiChevronDown />
                 </div>
+            </section>
+
+            {/* ==================== 3D ROBOT ==================== */}
+            <section className="home-section robot-section">
+                <motion.div
+                    initial={{ opacity: 0, y: 40 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                >
+                    <span className="section-label">Interactive</span>
+                    <h2 className="section-title">
+                        Meet my AI{' '}
+                        <span style={{ background: 'var(--gradient-primary)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
+                            Buddy
+                        </span>
+                    </h2>
+                    <p className="section-subtitle">
+                        Move your cursor around — it follows you! Click to make it wave.
+                    </p>
+                </motion.div>
+                <Robot3D />
             </section>
 
             {/* ==================== STATS SECTION ==================== */}
@@ -386,6 +414,7 @@ export default function Home() {
                     </div>
                 </div>
             </section>
+
 
             {/* ==================== CTA SECTION ==================== */}
             <section className="home-section cta-section">

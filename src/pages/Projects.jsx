@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
-import { HiOutlineCode, HiOutlineEye, HiOutlineChip, HiOutlineDocumentText } from 'react-icons/hi';
+import { HiOutlineCode, HiOutlineEye, HiOutlineChip, HiOutlineDocumentText, HiOutlineDatabase, HiOutlinePaperAirplane } from 'react-icons/hi';
 import Footer from '../components/Footer';
 
 const projects = [
@@ -12,6 +12,7 @@ const projects = [
         tech: ['Python', 'OpenCV', 'NLP', 'Multi-Agent', 'LinkedIn API'],
         github: 'https://github.com/Vipranan/image_collector',
         icon: <HiOutlineChip />,
+        image: '/images/project-multiagent.png',
     },
     {
         title: 'INTELLI-GRADE',
@@ -21,6 +22,7 @@ const projects = [
         tech: ['Python', 'ML', 'Computer Vision', 'OCR', 'Image Processing'],
         github: 'https://github.com/Vipranan/INTELLI-GRADE',
         icon: <HiOutlineDocumentText />,
+        image: '/images/project-intelligrade.png',
     },
     {
         title: 'RAG Agent on Nike Quarterly Data',
@@ -29,6 +31,27 @@ const projects = [
             'Built a Retrieval-Augmented Generation agent for analyzing Nike quarterly data using N8N workflow automation and API integrations. Demonstrates practical agentic AI in enterprise use cases.',
         tech: ['N8N', 'RAG', 'LLMs', 'API Integration', 'Workflow Automation'],
         icon: <HiOutlineEye />,
+        image: '/images/project-rag.png',
+    },
+    {
+        title: 'SQL Buddy',
+        category: 'GenAI / NLP',
+        description:
+            'Natural language to SQL query system supporting 55+ languages. Ask questions in Tamil, Hindi, English, or any language and get instant SQL results. Features security-first design with read-only queries, SQL injection prevention, and local LLM via Ollama.',
+        tech: ['Python', 'FastAPI', 'SQLAlchemy', 'Ollama', 'LLM', 'langdetect'],
+        github: 'https://github.com/Vipranan/SQL-BUDDY',
+        icon: <HiOutlineDatabase />,
+        image: '/images/project-sqlbuddy.png',
+    },
+    {
+        title: 'AIRMAN — Aviation Document AI Chat',
+        category: 'RAG / AI',
+        description:
+            'A RAG system for aviation documents including PPL/CPL/ATPL textbooks, SOPs, and Flight Manuals. Features hybrid retrieval combining FAISS vector search and BM25, cross-encoder reranking, citation tracking, and faithfulness scoring.',
+        tech: ['Python', 'FastAPI', 'LangChain', 'FAISS', 'Ollama', 'OCR'],
+        github: 'https://github.com/Vipranan/AIRMAN-RAG',
+        icon: <HiOutlinePaperAirplane />,
+        image: '/images/project-airman.png',
     },
     {
         title: 'Antenna Booking & Testing System',
@@ -37,6 +60,7 @@ const projects = [
             'Web-based antenna booking and testing system built during an internship at HCL Technologies. Led a team to deliver this complex engineering project within timeline using modern web technologies.',
         tech: ['FastAPI', 'React.js', 'Node.js', 'Next.js'],
         icon: <HiOutlineCode />,
+        image: '/images/project-antenna.png',
     },
 ];
 
@@ -101,7 +125,11 @@ export default function Projects() {
                             whileHover={{ y: -8, transition: { duration: 0.3 } }}
                         >
                             <div className="project-image">
-                                <span className="project-image-icon">{project.icon}</span>
+                                {project.image ? (
+                                    <img src={project.image} alt={project.title} className="project-image-bg" />
+                                ) : (
+                                    <span className="project-image-icon">{project.icon}</span>
+                                )}
                                 <div className="project-image-overlay" />
                             </div>
 
