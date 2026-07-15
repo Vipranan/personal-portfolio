@@ -161,7 +161,7 @@ export default function About() {
                     whileInView="visible"
                     viewport={{ once: true, amount: 0.1 }}
                 >
-                    {skills.map((skill, index) => (
+                    {skills.map((skill) => (
                         <motion.div
                             key={skill.title}
                             className="skill-category"

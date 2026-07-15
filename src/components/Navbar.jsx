@@ -20,10 +20,6 @@ export default function Navbar() {
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
-    useEffect(() => {
-        setMenuOpen(false);
-    }, [location]);
-
     return (
         <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
             <Link to="/" className="nav-logo">
@@ -36,11 +32,12 @@ export default function Navbar() {
                         key={item.path}
                         to={item.path}
                         className={`nav-link ${location.pathname === item.path ? 'active' : ''}`}
+                        onClick={() => setMenuOpen(false)}
                     >
                         {item.label}
                     </Link>
                 ))}
-                <Link to="/contact" className="nav-cta">
+                <Link to="/contact" className="nav-cta" onClick={() => setMenuOpen(false)}>
                     Let's Talk
                 </Link>
             </div>

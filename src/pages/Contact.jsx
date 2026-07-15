@@ -96,7 +96,7 @@ export default function Contact() {
                 setStatus('error');
                 setTimeout(() => setStatus('idle'), 4000);
             }
-        } catch (err) {
+        } catch {
             setStatus('error');
             setTimeout(() => setStatus('idle'), 4000);
         }

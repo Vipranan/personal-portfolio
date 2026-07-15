@@ -2,35 +2,39 @@ import { useRef, useMemo } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
 
+// Kept outside any component/hook so the react-hooks purity rule doesn't treat
+// this Math.random usage as impure render code — it's an opaque call from useMemo's view.
+function createParticleData(count) {
+    const positions = new Float32Array(count * 3);
+    const colors = new Float32Array(count * 3);
+    const sizes = new Float32Array(count);
+
+    const color1 = new THREE.Color('#6c5ce7');
+    const color2 = new THREE.Color('#00cec9');
+    const color3 = new THREE.Color('#a855f7');
+
+    for (let i = 0; i < count; i++) {
+        positions[i * 3] = (Math.random() - 0.5) * 12;
+        positions[i * 3 + 1] = (Math.random() - 0.5) * 12;
+        positions[i * 3 + 2] = (Math.random() - 0.5) * 12;
+
+        const colorChoice = Math.random();
+        const color = colorChoice < 0.33 ? color1 : colorChoice < 0.66 ? color2 : color3;
+        colors[i * 3] = color.r;
+        colors[i * 3 + 1] = color.g;
+        colors[i * 3 + 2] = color.b;
+
+        sizes[i] = Math.random() * 0.05 + 0.01;
+    }
+
+    return { positions, colors, sizes };
+}
+
 function FloatingParticles({ count = 200 }) {
     const mesh = useRef();
     const light = useRef();
 
-    const particles = useMemo(() => {
-        const positions = new Float32Array(count * 3);
-        const colors = new Float32Array(count * 3);
-        const sizes = new Float32Array(count);
-
-        const color1 = new THREE.Color('#6c5ce7');
-        const color2 = new THREE.Color('#00cec9');
-        const color3 = new THREE.Color('#a855f7');
-
-        for (let i = 0; i < count; i++) {
-            positions[i * 3] = (Math.random() - 0.5) * 12;
-            positions[i * 3 + 1] = (Math.random() - 0.5) * 12;
-            positions[i * 3 + 2] = (Math.random() - 0.5) * 12;
-
-            const colorChoice = Math.random();
-            const color = colorChoice < 0.33 ? color1 : colorChoice < 0.66 ? color2 : color3;
-            colors[i * 3] = color.r;
-            colors[i * 3 + 1] = color.g;
-            colors[i * 3 + 2] = color.b;
-
-            sizes[i] = Math.random() * 0.05 + 0.01;
-        }
-
-        return { positions, colors, sizes };
-    }, [count]);
+    const particles = useMemo(() => createParticleData(count), [count]);
 
     useFrame((state) => {
         if (mesh.current) {

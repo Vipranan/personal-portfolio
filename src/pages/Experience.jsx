@@ -89,7 +89,7 @@ export default function Experience() {
                     whileInView="visible"
                     viewport={{ once: true, amount: 0.1 }}
                 >
-                    {experiences.map((exp, index) => (
+                    {experiences.map((exp) => (
                         <motion.div
                             key={exp.company}
                             className="timeline-item"
