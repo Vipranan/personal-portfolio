@@ -24,3 +24,6 @@ dist-ssr
 *.sw?
 .vercel
 .env*
+
+# design reference handoff, not app code
+design_handoff_portfolio_noir/

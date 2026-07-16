@@ -1,27 +1,28 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Navbar from './components/Navbar';
-import Home from './pages/Home';
-import About from './pages/About';
-import Projects from './pages/Projects';
-import Experience from './pages/Experience';
-import Contact from './pages/Contact';
-import CustomCursor from './components/CustomCursor';
-import PageTransition from './components/PageTransition';
+import ScrollProgressBar from './components/ScrollProgressBar';
+import CursorFollowers from './components/CursorFollowers';
+import TopBar from './components/TopBar';
+import Hero from './components/Hero';
+import InfoBand from './components/InfoBand';
+import SelectedWork from './components/SelectedWork';
+import Background from './components/Background';
+import ContactFooter from './components/ContactFooter';
+import { useScrollFX } from './hooks/useScrollFX';
 import './index.css';
 
 function App() {
+  const { progressRef, heroRef } = useScrollFX();
+
   return (
-    <Router>
-      <CustomCursor />
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<PageTransition><Home /></PageTransition>} />
-        <Route path="/about" element={<PageTransition><About /></PageTransition>} />
-        <Route path="/projects" element={<PageTransition><Projects /></PageTransition>} />
-        <Route path="/experience" element={<PageTransition><Experience /></PageTransition>} />
-        <Route path="/contact" element={<PageTransition><Contact /></PageTransition>} />
-      </Routes>
-    </Router>
+    <div className="noir">
+      <ScrollProgressBar innerRef={progressRef} />
+      <CursorFollowers />
+      <TopBar />
+      <Hero heroRef={heroRef} />
+      <InfoBand />
+      <SelectedWork />
+      <Background />
+      <ContactFooter />
+    </div>
   );
 }
 
